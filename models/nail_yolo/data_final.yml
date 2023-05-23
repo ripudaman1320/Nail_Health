@@ -1,0 +1,16 @@
+train: /content/gdrive/Shareddrives/42028_Ass3/dataset_yolo5/train
+val: /content/gdrive/Shareddrives/42028_Ass3/dataset_yolo5/valid
+nc: 11
+names: ['Acral Lentiginous Melanoma', 
+        'Beaus Line', 
+        'Blue Finger', 
+        'Clubbing', 
+        'Healthy Nail', 
+        'Koilonychia', 
+        'Lindsay-s Nail', 
+        'Muehrckes Lines',  
+        'Onychogryphosis', 
+        'Pitting', 
+        'Terry-s Nail'
+        ]
+        
