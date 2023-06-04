@@ -3,11 +3,12 @@ import streamlit as st
 st.set_page_config(page_title = 'Nail Health', 
                     layout='wide',
                     page_icon='./images/nail.png')
-st.subheader('_Yolo for nail health_')
+# st.subheader('_Yolo for nail health_')
+st.write("# Welcome to Nail Health! 👋")
 st.balloons()
 # About
 st.markdown("""
-            #### This project aims to provide classification results on the different types of nail diseases. Overall, we have compiled a list of 11 nail diseases as per the WHO approved clinical diseases for nails. They are as follows;  
+            ##### This project aims to provide classification results on the different types of nail diseases. Overall, we have compiled a list of 11 nail diseases as per the WHO approved clinical diseases for nails. They are as follows;  
             """)
 
 st.markdown(
@@ -21,7 +22,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 img_value_size = 200
-st.subheader("Nail Diseases :-")
+st.subheader("_Nail Diseases_")
 
 with st.container():
     disease1, disease2, disease3, disease4, disease5 = st.tabs(['Acral Lentiginous Melanoma', 'Beaus Line', 'Blue Finger', 'Clubbing', 'Healthy Nail'])
