@@ -216,14 +216,19 @@ st.set_page_config(page_title="YOLO Object Detection",
                    layout='wide',
                    page_icon='./images/nail.png')
 
-st.header('Get Object Detection for any Image')
+st.header('Get Object Detection for Nail Image')
 st.write('*Please Upload Image to get detections*')
 
 CFG_MODEL_PATH = "models/yolo_nail200.pt"
 deviceoption = "CPU"
 
-with st.spinner('Please wait while your model is loading'):
-    model = torch.hub.load('ultralytics/yolov5', 'custom', path=CFG_MODEL_PATH, force_reload=True, device=deviceoption)
+@st.cache_resource
+def loadmodel():
+    with st.spinner('Please wait while your model is loading'):
+        model = torch.hub.load('ultralytics/yolov5', 'custom', path=CFG_MODEL_PATH, force_reload=True, device=deviceoption)
+    return model
+    
+    
 
 def upload_image():
     # Upload Image
@@ -246,6 +251,7 @@ def upload_image():
             return None
         
 def main():
+    model = loadmodel()
     object = upload_image()
     
     
@@ -258,7 +264,7 @@ def main():
         
         with col1:
             st.info('Preview of Image')
-            st.image(image_obj)
+            st.image(image_obj,width=300)
         
         ts = datetime.timestamp(datetime.now())
         imgpath = os.path.join('data/uploads', str(ts)+img_details['filename'])  
@@ -286,7 +292,7 @@ def main():
         if prediction:
             # Predictions
             img_ = Image.open(outputpath)
-            st.image(img_, caption='Model Prediction(s)', use_column_width='always')
+            st.image(img_, caption='Model Prediction(s)', width=300)
             
     
     
