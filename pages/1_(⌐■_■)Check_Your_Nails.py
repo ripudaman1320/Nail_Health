@@ -322,7 +322,7 @@ st.header('Get Object Detection for Nail Image')
 st.write('*Please Upload Image to get detections*')
 
 st.text("Please refer the sample images below for taking a photo :")
-st.info('Preview of Image')
+# st.info('Sample of Image')
 col1 , col2, col3 = st.columns(3)
 with col1:
     st.image('./images/VALIDPITCURE/pic1.jpg',width=300)
