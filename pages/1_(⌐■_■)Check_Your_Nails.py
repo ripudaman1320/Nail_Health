@@ -319,17 +319,19 @@ st.set_page_config(page_title="YOLO Object Detection",
                    page_icon='./images/nail.png')
 
 st.header('Get Object Detection for Nail Image')
-st.write('*Please Upload Image to get detections*')
+# st.write('**')
 
 st.text("Please refer the sample images below for taking a photo :")
 # st.info('Sample of Image')
 col1 , col2, col3 = st.columns(3)
 with col1:
-    st.image('./images/VALIDPITCURE/pic1.jpg',width=300)
+    st.image('./images/VALIDPITCURE/pic3.jpg',width=200)
 with col2:
-    st.image('./images/VALIDPITCURE/pic2.jpg',width=300)
+    st.image('./images/VALIDPITCURE/pic1.jpg',width=200)
 with col3:
-    st.image('./images/VALIDPITCURE/pic3.jpg',width=300)
+    st.image('./images/VALIDPITCURE/pic2.jpg',width=100)
+
+st.warning("Please note that this detection is not a medical advice. For any further medical help please consult your doctor. ")
 
 CFG_MODEL_PATH = "models/yolo_nail200.pt"
 deviceoption = "CPU"
@@ -344,7 +346,7 @@ def loadmodel():
 
 def upload_image():
     # Upload Image
-    image_file = st.file_uploader(label='Upload Image')
+    image_file = st.file_uploader(label='Please Upload Image to get detections')
     if image_file is not None:
         size_mb = image_file.size/(1024**2)
         file_details = {"filename":image_file.name,
@@ -353,7 +355,7 @@ def upload_image():
         #st.json(file_details)
         # validate file
         if file_details['filetype'] in ('image/png','image/jpeg'):
-            st.success('VALID IMAGE file type (png or jpeg')
+            st.success('VALID IMAGE file type (png or jpeg)')
             return {"file":image_file,
                     "details":file_details}
         
@@ -395,21 +397,22 @@ def main():
                 with st.spinner(""" Getting Objects from image. please wait """):
                     pred = model(imgpath)
                     # pred.dtype()
-                    # print(type(pred))
-                    # print("Pred-------------", pred)
+                    var1 = pred.tolist()[0]
                     # names = pred.split(" ")
                     # print("names",names)
                     pred.render()
-                        # save output to file
+                    # save output to file
                     for im in pred.ims:
                         im_base64 = Image.fromarray(im)
+                        # print("im_base64",im_base64)
                         im_base64.save(outputpath)
                     prediction = True
                 
         if prediction:
             # Predictions
             img_ = Image.open(outputpath)
-            st.image(img_, caption='Model Prediction(s)', width=300)
+            st.image(img_, caption='Model Prediction(s)', width=500)
+            st.text(pred)
             
     
     
