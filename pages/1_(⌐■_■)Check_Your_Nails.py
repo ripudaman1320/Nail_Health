@@ -321,7 +321,7 @@ st.set_page_config(page_title="YOLO Object Detection",
 st.header('Get Object Detection for Nail Image')
 # st.write('**')
 
-st.text("Please refer the sample images below for taking a photo :")
+st.text("Please refer the sample images below for taking a photo (only raw unmanicured nails):")
 # st.info('Sample of Image')
 col1 , col2, col3 = st.columns(3)
 with col1:
