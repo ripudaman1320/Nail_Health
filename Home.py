@@ -8,7 +8,7 @@ st.write("# Welcome to Nail Health! 👋")
 st.balloons()
 # About
 st.markdown("""
-            ##### This project aims to provide classification results on the different types of nail diseases. Overall, we have compiled a list of 11 nail diseases as per the WHO approved clinical diseases for nails. They are as follows;  
+            ##### This project aims to provide classification results on the different types of nail diseases. Overall, we have compiled a list of 10 nail diseases as per the WHO approved clinical diseases for nails. They are as follows;  
             """)
 
 st.markdown(

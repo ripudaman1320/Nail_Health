@@ -44,7 +44,7 @@ class YOLO_Pred():
         confidences = []
         classes = []
 
-        # widht and height of the image (input_image)
+        # width and height of the image (input_image)
         image_w, image_h = input_image.shape[:2]
         x_factor = image_w/INPUT_WH_YOLO
         y_factor = image_h/INPUT_WH_YOLO
@@ -52,12 +52,9 @@ class YOLO_Pred():
         for i in range(len(detections)):
             row = detections[i]
             confidence = row[4] # confidence of detection an object
-            if confidence > 0.6:
-                print("Row -->",row[5:])
+            if confidence > 0.7:
                 class_score = row[5:].max() # maximum probability from 11 objects
-                print("class_score -->",class_score)
                 class_id = row[5:].argmax() # get the index position at which max probabilty occur
-                print("class_id -->",class_id)
 
                 if class_score > 0.25:
                     cx, cy, w, h = row[0:4]
@@ -82,7 +79,7 @@ class YOLO_Pred():
         # NMS
         index = np.array(cv2.dnn.NMSBoxes(boxes_np,confidences_np,0.25,0.45)).flatten()
 
-        print("Labels --------- ",self.labels)
+
         # Draw the Bounding
         for ind in index:
             # extract bounding box
@@ -90,7 +87,6 @@ class YOLO_Pred():
             bb_conf = int(confidences_np[ind]*100)
             classes_id = classes[ind]
             class_name = self.labels[classes_id]
-            print("class_name : ",class_name)
             colors = self.generate_colors(classes_id)
 
             text = f'{class_name}: {bb_conf}%'
@@ -108,3 +104,11 @@ class YOLO_Pred():
         np.random.seed(10)
         colors = np.random.randint(100,255,size=(self.nc,3)).tolist()
         return tuple(colors[ID])
+        
+        
+    
+    
+    
+
+
+
